@@ -1,14 +1,26 @@
-
-function getInputValue() {
-    const depositInput = document.getElementById('deposit-input');
-    const depositText = depositInput.value;
-    const depositAmount = parseFloat(depositText);
-    depositInput.value = '';
-    return depositAmount;
+/* function doubleIt(num) {
+    const result = num * 2;
+    return result;
 }
 
+const fiveDouble = doubleIt(5);
+const sevenDouble = doubleIt(7); */
 
+function getInputValue(inputId) {
+    const inputField = document.getElementById(inputId);
+    const inputAmountText = inputField.value;
+    const amountValue = parseFloat(inputAmountText);
+    inputField.value = '';
+    return amountValue;
+}
 
+function updateTotalField(depositAmount) {
+    const previousDeposit = document.getElementById('deposit-amount');
+    const previousDepositText = previousDeposit.innerText;
+    const previousDepositAmount = parseFloat(previousDepositText);
+    const totalDepositAmount = previousDepositAmount + depositAmount;
+    previousDeposit.innerText = totalDepositAmount;
+}
 
 
 
@@ -20,15 +32,17 @@ document.getElementById('deposit-button').addEventListener('click', function () 
     // const depositInput = document.getElementById('deposit-input');
     // const depositText = depositInput.value;
     // const depositAmount = parseFloat(depositText);
-    const depositAmount = getInputValue();
+    const depositAmount = getInputValue('deposit-input');
 
     // import previous deposit amount and add with new
-    const previousDeposit = document.getElementById('deposit-amount');
-    const previousDepositText = previousDeposit.innerText;
-    const previousDepositAmount = parseFloat(previousDepositText);
-    const totalDepositAmount = previousDepositAmount + depositAmount;
+    // const previousDeposit = document.getElementById('deposit-amount');
+    // const previousDepositText = previousDeposit.innerText;
+    // const previousDepositAmount = parseFloat(previousDepositText);
+    // const totalDepositAmount = previousDepositAmount + depositAmount;
+    updateTotalField(depositAmount);
+
     // set the total amount into the deposit 
-    previousDeposit.innerText = totalDepositAmount;
+    // previousDeposit.innerText = totalDepositAmount;
 
     // add the value of deposit with balance
     const balance = document.getElementById('balance');
@@ -44,14 +58,16 @@ document.getElementById('deposit-button').addEventListener('click', function () 
 
 document.getElementById('withdraw-button').addEventListener('click', function () {
     // import withdraw input
-    const withdrawInput = document.getElementById('withdraw-input');
-    const withdrawText = withdrawInput.value;
-    const withdrawAmount = parseFloat(withdrawText);
+    // const withdrawInput = document.getElementById('withdraw-input');
+    // const withdrawText = withdrawInput.value;
+    // const withdrawAmount = parseFloat(withdrawText);
+    const withdrawAmount = getInputValue('withdraw-input');
+
     // import previous withdraw and add with new
     const previousWithdraw = document.getElementById('withdraw');
     const previousWithdrawText = previousWithdraw.innerText;
     const previousWithdrawAmount = parseFloat(previousWithdrawText);
-    const totalWithdrawAmount = withdrawAmount + previousWithdrawAmount;
+    const totalWithdrawAmount = previousWithdrawAmount + withdrawAmount;
     previousWithdraw.innerText = totalWithdrawAmount;
 
     // import balance and subtract the amount of withdraw
